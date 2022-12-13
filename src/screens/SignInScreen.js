@@ -1,16 +1,24 @@
 import React, { useState } from "react";
-import { View, Button, StyleSheet, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { Input, Button, Card } from "@rneui/themed";
 
 const SignInScreen = (props) => {
   return (
     <View>
-      <Text style={styles.textStyle}>Welcome To SignInScreen</Text>
-      <Button
-        title="Dont Have an Account? Sign Up!"
-        onPress={() => {
-          props.navigation.navigate("SignUp");
-        }}
-      />
+      <Card>
+        <Card.Title>Welcome to AuthApp</Card.Title>
+        <Card.Divider />
+        <Input placeholder="Email Address" />
+        <Input placeholder="Password" />
+        <Button title="Sign In!" type="solid" />
+        <Button
+          title="Dont have an Account? Sign Up"
+          type="clear"
+          onPress={() => {
+            props.navigation.navigate("SignUp");
+          }}
+        />
+      </Card>
     </View>
   );
 };
