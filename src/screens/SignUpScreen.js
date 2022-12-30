@@ -1,9 +1,8 @@
 import { Input, Button, Card } from "@rneui/themed";
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
-import * as firebase from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-// import { getDatabase } from "firebase/database";
+import { getDatabase, ref, set } from "firebase/database";
 
 const SignUpScreen = (props) => {
   const [name, setName] = useState("");
@@ -16,22 +15,13 @@ const SignUpScreen = (props) => {
     if (name && email && studentID && password) {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCreds) => {
-          // userCreds.user.updateProfile({ displayName: name });
-          // const database = getDatabase();
-          // const ref = database.ref("https://mad-fall22-default-rtdb.firebaseio.com");
-          // ref
-          //   .child("users/")
-          //   .child(userCreds.user.uid)
-          //   .set({
-          //     name: name,
-          //     sid: studentID,
-          //     email: email,
-          //   })
-          //   .then(() => {
-          //     alert("account created successfully");
-          //     props.navigation.navigate("SignIn");
-          //   });
-          console.log(userCreds);
+          //This is for RealTime Database Implementation on Firebase
+          const db = getDatabase();
+          set(ref(db, "users/" + userCreds.user.uid), {
+            username: name,
+            email: userCreds.user.email,
+            studentID: studentID,
+          });
         })
         .catch((error) => {
           console.log("Firebase Error", error);
