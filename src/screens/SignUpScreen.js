@@ -22,6 +22,7 @@ const SignUpScreen = (props) => {
             email: userCreds.user.email,
             studentID: studentID,
           });
+          props.navigation.navigate("SignIn");
         })
         .catch((error) => {
           console.log("Firebase Error", error);
