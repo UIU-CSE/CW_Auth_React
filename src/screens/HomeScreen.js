@@ -7,7 +7,7 @@ const HomeScreen = (props) => {
     <AuthContext.Consumer>
       {(auth) => (
         <View>
-          <Text style={styles.textStyle}>Welcome To HomeScreen</Text>
+          <Text style={styles.textStyle}>W E L C O M E!!</Text>
           <Button
             type="outline"
             title="log out"
